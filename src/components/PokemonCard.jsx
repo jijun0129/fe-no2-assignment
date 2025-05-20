@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const CardDiv = styled.div`
-  width: 85%;
   text-align: center;
   border-radius: 10px;
   border: 1px solid #dddddd;
@@ -62,7 +61,7 @@ const PokemonCard = ({ pokemon, selectPokemon, setSelectPokemon, select }) => {
   };
 
   const generateNumber = (num) => {
-    return `No.${String(num).padStart(3, "0")}`;
+    return `No. ${String(num).padStart(3, "0")}`;
   };
 
   return (

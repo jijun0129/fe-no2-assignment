@@ -10,7 +10,6 @@ const DashboardDiv = styled.div`
   border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  justify-items: center;
   gap: 20px;
 `;
 
