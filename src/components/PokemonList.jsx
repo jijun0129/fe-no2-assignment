@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import PokemonCard from "./PokemonCard";
-import { pokemons } from "../data/data";
+import MOCK_DATA from "../data/mock";
 
 const DashboardDiv = styled.div`
   width: 100%;
@@ -17,7 +17,7 @@ const DashboardDiv = styled.div`
 const PokemonList = () => {
   return (
     <DashboardDiv>
-      {pokemons.map((pokemon) => {
+      {MOCK_DATA.map((pokemon) => {
         return <PokemonCard key={pokemon.id} pokemon={pokemon} />;
       })}
     </DashboardDiv>

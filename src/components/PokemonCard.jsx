@@ -47,9 +47,9 @@ const Button = styled.button`
 const PokemonCard = ({ pokemon }) => {
   return (
     <CardDiv>
-      <Img src={pokemon.image} alt="11" />
-      <NameP>{pokemon.name}</NameP>
-      <NumP>No.001</NumP>
+      <Img src={pokemon.img_url} alt="11" />
+      <NameP>{pokemon.korean_name}</NameP>
+      <NumP>No.{pokemon.id}</NumP>
       <Button>추가</Button>
     </CardDiv>
   );
