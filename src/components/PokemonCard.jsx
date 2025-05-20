@@ -44,8 +44,8 @@ const Button = styled.button`
   }
 `;
 
-const PokemonCard = ({ pokemon, selectPokemon, setSelectPokemon }) => {
-  const handleButtonClick = (pokemon) => {
+const PokemonCard = ({ pokemon, selectPokemon, setSelectPokemon, select }) => {
+  const handlePlusClick = (pokemon) => {
     if (selectPokemon.length >= 6) {
       alert("최대 6마리까지 선택할 수 있습니다.");
       return;
@@ -56,13 +56,25 @@ const PokemonCard = ({ pokemon, selectPokemon, setSelectPokemon }) => {
     }
     setSelectPokemon([...selectPokemon, pokemon]);
   };
+  const handleDeleteClick = (pokemon) => {
+    const updatedPokemon = selectPokemon.filter((p) => p.id !== pokemon.id);
+    setSelectPokemon(updatedPokemon);
+  };
+
+  const generateNumber = (num) => {
+    return `No.${String(num).padStart(3, "0")}`;
+  };
 
   return (
     <CardDiv>
       <Img src={pokemon.img_url} alt="pokemon" />
       <NameP>{pokemon.korean_name}</NameP>
-      <NumP>No.{pokemon.id}</NumP>
-      <Button onClick={() => handleButtonClick(pokemon)}>추가</Button>
+      <NumP>{generateNumber(pokemon.id)}</NumP>
+      {select ? (
+        <Button onClick={() => handleDeleteClick(pokemon)}>삭제</Button>
+      ) : (
+        <Button onClick={() => handlePlusClick(pokemon)}>추가</Button>
+      )}
     </CardDiv>
   );
 };

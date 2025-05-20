@@ -24,6 +24,7 @@ const PokemonList = ({ selectPokemon, setSelectPokemon }) => {
             pokemon={pokemon}
             selectPokemon={selectPokemon}
             setSelectPokemon={setSelectPokemon}
+            select={false}
           />
         );
       })}

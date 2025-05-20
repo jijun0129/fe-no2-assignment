@@ -44,7 +44,12 @@ const Dashboard = ({ selectPokemon, setSelectPokemon }) => {
       <TitleH2>나만의 포켓몬</TitleH2>
       <ContentDiv>
         {selectPokemon.map((pokemon) => (
-          <PokemonCard pokemon={pokemon} selectPokemon={selectPokemon} setSelectPokemon={setSelectPokemon} />
+          <PokemonCard
+            pokemon={pokemon}
+            selectPokemon={selectPokemon}
+            setSelectPokemon={setSelectPokemon}
+            select={true}
+          />
         ))}
         {Array.from({ length: 6 - selectPokemon.length }).map((_, index) => (
           <Img key={index} src={Pokeball} alt="Pokeball" />
