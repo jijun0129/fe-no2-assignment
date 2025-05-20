@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import Pokeball from "../assets/pokeball.png";
+import PokemonCard from "./PokemonCard";
 
 const DashboardDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 1200px;
+  width: 100%;
+  max-width: 1200px;
   padding: 20px;
   background-color: #f8f8f8;
   border-radius: 10px;
@@ -36,17 +38,17 @@ const Img = styled.img`
   background-color: #ffffff;
 `;
 
-const Dashboard = () => {
+const Dashboard = ({ selectPokemon, setSelectPokemon }) => {
   return (
     <DashboardDiv>
       <TitleH2>나만의 포켓몬</TitleH2>
       <ContentDiv>
-        <Img src={Pokeball} alt="Pokeball" />
-        <Img src={Pokeball} alt="Pokeball" />
-        <Img src={Pokeball} alt="Pokeball" />
-        <Img src={Pokeball} alt="Pokeball" />
-        <Img src={Pokeball} alt="Pokeball" />
-        <Img src={Pokeball} alt="Pokeball" />
+        {selectPokemon.map((pokemon) => (
+          <PokemonCard pokemon={pokemon} selectPokemon={selectPokemon} setSelectPokemon={setSelectPokemon} />
+        ))}
+        {Array.from({ length: 6 - selectPokemon.length }).map((_, index) => (
+          <Img key={index} src={Pokeball} alt="Pokeball" />
+        ))}
       </ContentDiv>
     </DashboardDiv>
   );

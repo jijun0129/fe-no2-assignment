@@ -14,11 +14,18 @@ const DashboardDiv = styled.div`
   gap: 20px;
 `;
 
-const PokemonList = () => {
+const PokemonList = ({ selectPokemon, setSelectPokemon }) => {
   return (
     <DashboardDiv>
       {MOCK_DATA.map((pokemon) => {
-        return <PokemonCard key={pokemon.id} pokemon={pokemon} />;
+        return (
+          <PokemonCard
+            key={pokemon.id}
+            pokemon={pokemon}
+            selectPokemon={selectPokemon}
+            setSelectPokemon={setSelectPokemon}
+          />
+        );
       })}
     </DashboardDiv>
   );

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Dashboard from "../components/Dashboard";
 import PokemonList from "../components/PokemonList";
+import { useState } from "react";
 
 const ContainerDiv = styled.div`
   display: flex;
@@ -11,10 +12,12 @@ const ContainerDiv = styled.div`
 `;
 
 const Dex = () => {
+  const [selectPokemon, setSelectPokemon] = useState([]);
+
   return (
     <ContainerDiv>
-      <Dashboard />
-      <PokemonList />
+      <Dashboard selectPokemon={selectPokemon} setSelectPokemon={setSelectPokemon} />
+      <PokemonList selectPokemon={selectPokemon} setSelectPokemon={setSelectPokemon} />
     </ContainerDiv>
   );
 };
