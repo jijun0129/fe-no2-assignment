@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Dashboard from "../components/Dashboard";
 import PokemonList from "../components/PokemonList";
 import { useState } from "react";
+import { PokemonContext } from "../context/PokemonContext";
 
 const ContainerDiv = styled.div`
   display: flex;
@@ -15,10 +16,12 @@ const Dex = () => {
   const [selectPokemon, setSelectPokemon] = useState([]);
 
   return (
-    <ContainerDiv>
-      <Dashboard selectPokemon={selectPokemon} setSelectPokemon={setSelectPokemon} />
-      <PokemonList selectPokemon={selectPokemon} setSelectPokemon={setSelectPokemon} />
-    </ContainerDiv>
+    <PokemonContext.Provider value={{ selectPokemon, setSelectPokemon }}>
+      <ContainerDiv>
+        <Dashboard />
+        <PokemonList />
+      </ContainerDiv>
+    </PokemonContext.Provider>
   );
 };
 

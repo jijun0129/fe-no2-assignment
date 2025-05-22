@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useContext } from "react";
+import { PokemonContext } from "../context/PokemonContext";
 
 const CardDiv = styled.div`
   text-align: center;
@@ -50,7 +52,9 @@ const Button = styled.button`
   }
 `;
 
-const PokemonCard = ({ pokemon, selectPokemon, setSelectPokemon, select }) => {
+const PokemonCard = ({ pokemon, select }) => {
+  const { selectPokemon, setSelectPokemon } = useContext(PokemonContext);
+
   const navigate = useNavigate();
 
   const handleCardClick = () => {
