@@ -45,6 +45,7 @@ const Dashboard = ({ selectPokemon, setSelectPokemon }) => {
       <ContentDiv>
         {selectPokemon.map((pokemon) => (
           <PokemonCard
+            key={pokemon.id}
             pokemon={pokemon}
             selectPokemon={selectPokemon}
             setSelectPokemon={setSelectPokemon}
