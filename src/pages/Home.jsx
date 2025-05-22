@@ -25,6 +25,11 @@ const Button = styled.button`
   &:hover {
     background-color: #cc0000;
   }
+  &:active,
+  &:focus {
+    outline: 4px auto -webkit-focus-ring-color;
+    outline-offset: 2px;
+  }
 `;
 
 const Home = () => {
