@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const CardDiv = styled.div`
@@ -8,6 +9,7 @@ const CardDiv = styled.div`
   padding: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
   &:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -44,6 +46,12 @@ const Button = styled.button`
 `;
 
 const PokemonCard = ({ pokemon, selectPokemon, setSelectPokemon, select }) => {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(`/pokemon-detail?id=${pokemon.id}`);
+  };
+
   const handlePlusClick = (pokemon) => {
     if (selectPokemon.length >= 6) {
       alert("최대 6마리까지 선택할 수 있습니다.");
@@ -65,7 +73,7 @@ const PokemonCard = ({ pokemon, selectPokemon, setSelectPokemon, select }) => {
   };
 
   return (
-    <CardDiv>
+    <CardDiv onClick={handleCardClick}>
       <Img src={pokemon.img_url} alt="pokemon" />
       <NameP>{pokemon.korean_name}</NameP>
       <NumP>{generateNumber(pokemon.id)}</NumP>
