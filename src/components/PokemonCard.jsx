@@ -52,7 +52,8 @@ const PokemonCard = ({ pokemon, selectPokemon, setSelectPokemon, select }) => {
     navigate(`/pokemon-detail?id=${pokemon.id}`);
   };
 
-  const handlePlusClick = (pokemon) => {
+  const handlePlusClick = (e, pokemon) => {
+    e.stopPropagation();
     if (selectPokemon.length >= 6) {
       alert("최대 6마리까지 선택할 수 있습니다.");
       return;
@@ -63,7 +64,8 @@ const PokemonCard = ({ pokemon, selectPokemon, setSelectPokemon, select }) => {
     }
     setSelectPokemon([...selectPokemon, pokemon]);
   };
-  const handleDeleteClick = (pokemon) => {
+  const handleDeleteClick = (e, pokemon) => {
+    e.stopPropagation();
     const updatedPokemon = selectPokemon.filter((p) => p.id !== pokemon.id);
     setSelectPokemon(updatedPokemon);
   };
@@ -78,9 +80,9 @@ const PokemonCard = ({ pokemon, selectPokemon, setSelectPokemon, select }) => {
       <NameP>{pokemon.korean_name}</NameP>
       <NumP>{generateNumber(pokemon.id)}</NumP>
       {select ? (
-        <Button onClick={() => handleDeleteClick(pokemon)}>삭제</Button>
+        <Button onClick={(e) => handleDeleteClick(e, pokemon)}>삭제</Button>
       ) : (
-        <Button onClick={() => handlePlusClick(pokemon)}>추가</Button>
+        <Button onClick={(e) => handlePlusClick(e, pokemon)}>추가</Button>
       )}
     </CardDiv>
   );
