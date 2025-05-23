@@ -1,5 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useContext } from "react";
+import { PokemonContext } from "../context/PokemonContext";
+import { toast } from "react-toastify";
 
 const CardDiv = styled.div`
   text-align: center;
@@ -50,7 +53,9 @@ const Button = styled.button`
   }
 `;
 
-const PokemonCard = ({ pokemon, selectPokemon, setSelectPokemon, select }) => {
+const PokemonCard = ({ pokemon, select }) => {
+  const { selectPokemon, setSelectPokemon } = useContext(PokemonContext);
+
   const navigate = useNavigate();
 
   const handleCardClick = () => {
@@ -60,11 +65,11 @@ const PokemonCard = ({ pokemon, selectPokemon, setSelectPokemon, select }) => {
   const handlePlusClick = (e, pokemon) => {
     e.stopPropagation();
     if (selectPokemon.length >= 6) {
-      alert("최대 6마리까지 선택할 수 있습니다.");
+      toast.warn("최대 6마리까지 선택할 수 있습니다.");
       return;
     }
     if (selectPokemon.some((p) => p.id === pokemon.id)) {
-      alert("이미 선택한 포켓몬입니다.");
+      toast.warn("이미 선택한 포켓몬입니다.");
       return;
     }
     setSelectPokemon([...selectPokemon, pokemon]);

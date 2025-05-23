@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import Pokeball from "../assets/pokeball.png";
 import PokemonCard from "./PokemonCard";
+import { PokemonContext } from "../context/PokemonContext";
+import { useContext } from "react";
 
 const DashboardDiv = styled.div`
   display: flex;
@@ -38,19 +40,15 @@ const Img = styled.img`
   background-color: #ffffff;
 `;
 
-const Dashboard = ({ selectPokemon, setSelectPokemon }) => {
+const Dashboard = () => {
+  const { selectPokemon } = useContext(PokemonContext);
+
   return (
     <DashboardDiv>
       <TitleH2>나만의 포켓몬</TitleH2>
       <ContentDiv>
         {selectPokemon.map((pokemon) => (
-          <PokemonCard
-            key={pokemon.id}
-            pokemon={pokemon}
-            selectPokemon={selectPokemon}
-            setSelectPokemon={setSelectPokemon}
-            select={true}
-          />
+          <PokemonCard key={pokemon.id} pokemon={pokemon} select={true} />
         ))}
         {Array.from({ length: 6 - selectPokemon.length }).map((_, index) => (
           <Img key={index} src={Pokeball} alt="Pokeball" />

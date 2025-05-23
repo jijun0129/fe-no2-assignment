@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import Dashboard from "../components/Dashboard";
 import PokemonList from "../components/PokemonList";
-import { useState } from "react";
+import { useEffect } from "react";
+import { PokemonContext } from "../context/PokemonContext";
+import { useContext } from "react";
 
 const ContainerDiv = styled.div`
   display: flex;
@@ -12,12 +14,19 @@ const ContainerDiv = styled.div`
 `;
 
 const Dex = () => {
-  const [selectPokemon, setSelectPokemon] = useState([]);
+  const { setSelectPokemon } = useContext(PokemonContext);
+
+  useEffect(() => {
+    const storedSelectPokemon = localStorage.getItem("selectPokemon");
+    if (storedSelectPokemon) {
+      setSelectPokemon(JSON.parse(storedSelectPokemon));
+    }
+  }, [setSelectPokemon]);
 
   return (
     <ContainerDiv>
-      <Dashboard selectPokemon={selectPokemon} setSelectPokemon={setSelectPokemon} />
-      <PokemonList selectPokemon={selectPokemon} setSelectPokemon={setSelectPokemon} />
+      <Dashboard />
+      <PokemonList />
     </ContainerDiv>
   );
 };
