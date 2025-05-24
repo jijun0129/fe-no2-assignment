@@ -11,9 +11,6 @@ body {
     background-color: #ffe4b8;
     box-sizing: border-box;
     margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     min-width: 320px;
     min-height: 100vh;
 }
