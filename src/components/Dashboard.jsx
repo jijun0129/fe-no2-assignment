@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import Pokeball from "../assets/pokeball.png";
 import PokemonCard from "./PokemonCard";
-import { PokemonContext } from "../context/PokemonContext";
-import { useContext } from "react";
+import { useSelector } from "react-redux";
 
 const DashboardDiv = styled.div`
   display: flex;
@@ -41,7 +40,7 @@ const Img = styled.img`
 `;
 
 const Dashboard = () => {
-  const { selectPokemon } = useContext(PokemonContext);
+  const selectPokemon = useSelector((state) => state.pokemon.selectPokemon);
 
   return (
     <DashboardDiv>

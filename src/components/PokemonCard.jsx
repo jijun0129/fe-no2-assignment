@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useContext } from "react";
-import { PokemonContext } from "../context/PokemonContext";
+import { useSelector, useDispatch } from "react-redux";
+import { addPokemon, removePokemon } from "../store/selectPokemon";
 import { toast } from "react-toastify";
 
 const CardDiv = styled.div`
@@ -54,8 +54,8 @@ const Button = styled.button`
 `;
 
 const PokemonCard = ({ pokemon, select }) => {
-  const { selectPokemon, setSelectPokemon } = useContext(PokemonContext);
-
+  const selectPokemon = useSelector((state) => state.pokemon.selectPokemon);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleCardClick = () => {
@@ -72,12 +72,11 @@ const PokemonCard = ({ pokemon, select }) => {
       toast.warn("이미 선택한 포켓몬입니다.");
       return;
     }
-    setSelectPokemon([...selectPokemon, pokemon]);
+    dispatch(addPokemon(pokemon));
   };
   const handleDeleteClick = (e, pokemon) => {
     e.stopPropagation();
-    const updatedPokemon = selectPokemon.filter((p) => p.id !== pokemon.id);
-    setSelectPokemon(updatedPokemon);
+    dispatch(removePokemon(pokemon));
   };
 
   const generateNumber = (num) => {
