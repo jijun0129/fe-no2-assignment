@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Dashboard from "../components/Dashboard";
 import PokemonList from "../components/PokemonList";
-import { useState } from "react";
 
 const ContainerDiv = styled.div`
   display: flex;
@@ -11,9 +10,7 @@ const ContainerDiv = styled.div`
   gap: 20px;
 `;
 
-const Dex = () => {
-  const [selectPokemon, setSelectPokemon] = useState([]);
-
+const Dex = ({ selectPokemon, setSelectPokemon }) => {
   return (
     <ContainerDiv>
       <Dashboard selectPokemon={selectPokemon} setSelectPokemon={setSelectPokemon} />
