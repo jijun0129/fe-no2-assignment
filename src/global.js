@@ -9,8 +9,11 @@ const GlobalStyle = createGlobalStyle`
 
 body {
     background-color: #ffe4b8;
-    box-sizing: border-box;
     margin: 0;
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
     min-width: 320px;
     min-height: 100vh;
 }

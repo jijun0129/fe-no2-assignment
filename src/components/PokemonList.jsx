@@ -3,7 +3,7 @@ import PokemonCard from "./PokemonCard";
 import MOCK_DATA from "../data/mock";
 
 const DashboardDiv = styled.div`
-  width: 100%;
+  width: 100vw;
   max-width: 1200px;
   padding: 20px;
   background-color: #f8f8f8;
