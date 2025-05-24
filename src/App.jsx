@@ -1,23 +1,18 @@
-import { useEffect, useState } from "react";
 import { Router } from "./routes/router";
-import { PokemonContext } from "./context/PokemonContext";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 import { ToastContainer } from "react-toastify";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistor } from "./store/store";
 
 function App() {
-  const [selectPokemon, setSelectPokemon] = useState(() => {
-    const stored = localStorage.getItem("selectPokemon");
-    return stored ? JSON.parse(stored) : null;
-  });
-
-  useEffect(() => {
-    localStorage.setItem("selectPokemon", JSON.stringify(selectPokemon));
-  }, [selectPokemon]);
-
   return (
-    <PokemonContext.Provider value={{ selectPokemon, setSelectPokemon }}>
-      <Router />
-      <ToastContainer position="bottom-right" autoClose={4000} />
-    </PokemonContext.Provider>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Router />
+        <ToastContainer position="bottom-right" autoClose={4000} />
+      </PersistGate>
+    </Provider>
   );
 }
 

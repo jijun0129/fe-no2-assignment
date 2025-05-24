@@ -1,9 +1,6 @@
 import styled from "styled-components";
 import Dashboard from "../components/Dashboard";
 import PokemonList from "../components/PokemonList";
-import { useEffect } from "react";
-import { PokemonContext } from "../context/PokemonContext";
-import { useContext } from "react";
 
 const ContainerDiv = styled.div`
   display: flex;
@@ -14,15 +11,6 @@ const ContainerDiv = styled.div`
 `;
 
 const Dex = () => {
-  const { setSelectPokemon } = useContext(PokemonContext);
-
-  useEffect(() => {
-    const storedSelectPokemon = localStorage.getItem("selectPokemon");
-    if (storedSelectPokemon) {
-      setSelectPokemon(JSON.parse(storedSelectPokemon));
-    }
-  }, [setSelectPokemon]);
-
   return (
     <ContainerDiv>
       <Dashboard />
